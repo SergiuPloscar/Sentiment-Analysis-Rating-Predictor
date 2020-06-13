@@ -15,14 +15,28 @@
             rating score for
             your review will will be displayed on the right. </p>
         <textarea id="review-area" name="review-area" class="form-control review" rows="5"></textarea>
-        <small class="disclaimer">This classifier was only trained with a balanced set of 1602 Amazon reviews due to Heroku memory usage limitations and serves as a demo for a bachelor
-            thesis application.</small>
         <div class="inline button-div">
             <button id="submit" class="btn btn-primary" type="submit">Predict my rating!</button>
         </div>
         <h2 class="rating inline align-bottom">RATING:<span id="rating" class="spacer"></span><span id="star" class="star spacer"></span></h2>
     </form>
     <div id="error" class="alert alert-danger" role="alert" style="display:none;"></div>
+    <div>
+        <p id="ex1" class=" first-example example inline">I am very satisfied with the product and I would definitely recommend it.</p> <button id="ex1b" class=" first-example btn btn-primary inline align-top" type="button">Try example</button>
+    </div>
+    <div>
+        <p id="ex2" class="first-example example inline">The product is good, but I was expecting more from it. It lacks some features, I hope the next version will improve on it. Still, it offers a decent experience overall.</p> <button id="ex2b" class=" first-example btn btn-primary inline align-top" type="button">Try example</button>
+    </div>
+    <div>
+        <p id="ex3" class="first-example example inline">It is alright, definitely nothing special. You get what you pay for, nothing more, nothing less.</p> <button id="ex3b" class=" first-example btn btn-primary inline align-top" type="button">Try example</button>
+    </div>
+    <div>
+        <p id="ex4" class="first-example example inline">I am unhappy with the quality of the product. It feels cheap and clunky, but at least it works</p> <button id="ex4b" class=" first-example btn btn-primary inline align-top" type="button">Try example</button>
+    </div>
+    <div>
+        <p id="ex5" class="first-example example inline">This is nothing less of a disappointment. I feel like this product is a scam and I want my money back</p> <button id="ex5b" class=" first-example btn btn-primary inline align-top" type="button">Try example</button>
+    </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

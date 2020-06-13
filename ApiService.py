@@ -9,8 +9,16 @@ def train_classifier(train_reviews, stop, lm, words):
     train_reviews = remove_empty_columns(train_reviews)
     train_reviews = prepare_review_data(train_reviews, stop, lm, words)
     classifier_train_data = create_classifier_data(train_reviews)
-    cl = nltk.NaiveBayesClassifier.train(classifier_train_data)
+    # You can change the classifier type by modifying below
+    cl = nltk.ConditionalExponentialClassifier.train(classifier_train_data)
     return cl
+
+
+def prepare_test_data(test_reviews, stop, lm, words):
+    test_reviews = remove_empty_columns(test_reviews)
+    test_reviews = prepare_review_data(test_reviews, stop, lm, words)
+    classifier_test_data = create_classifier_data(test_reviews)
+    return classifier_test_data
 
 
 def prepare_review_data(data, stop, lm, words):
@@ -24,7 +32,6 @@ def prepare_review_data(data, stop, lm, words):
 
 def create_word_features(words):
     my_dict = dict([(word, True) for word in word_tokenize(words)])
-    print(my_dict)
     return my_dict
 
 
@@ -76,8 +83,12 @@ def penn2morphy(penntag):
 
 
 def lemmatize_sent(text, lm):
-    return ' '.join(lm.lemmatize(word, pos=penn2morphy(tag))
-                    for word, tag in pos_tag(word_tokenize(text)) if tag == 'JJ' or tag == 'RB' or tag == 'VB')
+    result = ''
+    for word, tag in pos_tag(word_tokenize(text)):
+        if tag != 'NN':
+            lem = lm.lemmatize(word, pos=penn2morphy(tag))
+            result = result + " " + lem
+    return result
 
 
 def process_review(review, stop, lm, cl, words):
@@ -86,9 +97,5 @@ def process_review(review, stop, lm, cl, words):
     review = ' '.join([word for word in review.split() if word in words and word not in stop])
     review = lemmatize_sent(review, lm)
     result = cl.prob_classify(create_word_features(review))
-
-    for label in result.samples():
-        print("%s: %f" % (label, result.prob(label)))
-    cl.show_most_informative_features(500)
     result = cl.classify(create_word_features(review))
     return result
