@@ -10,7 +10,7 @@ def train_classifier(train_reviews, stop, lm, words):
     train_reviews = prepare_review_data(train_reviews, stop, lm, words)
     classifier_train_data = create_classifier_data(train_reviews)
     # You can change the classifier type by modifying below
-    cl = nltk.ConditionalExponentialClassifier.train(classifier_train_data)
+    cl = nltk.ConditionalExponentialClassifier.train(classifier_train_data, max_iter=2)
     return cl
 
 
