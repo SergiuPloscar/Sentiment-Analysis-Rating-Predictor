@@ -23,7 +23,7 @@ nltk==3.5
 numpy==1.18.4
 pandas==1.0.3
 pathspec==0.5.9
-Pillow==7.1.2
+Pillow==8.1.1
 progressbar==2.5
 pyenchant==3.1.0
 pyparsing==2.4.7
